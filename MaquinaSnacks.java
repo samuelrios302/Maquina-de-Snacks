@@ -8,8 +8,10 @@ import java.util.Scanner;
 
 public class MaquinaSnacks {
     static Scanner entrada = new Scanner(System.in);
+    // Lista para almacenar todos los snacks comprados
     static List<Snack> listaSnacksComprados = new ArrayList<>();
 
+    // Ingreso de un ID valida de Snack
     public static int inputIdSnack() {
         int idSnack = 0;
         try {
@@ -25,6 +27,7 @@ public class MaquinaSnacks {
         }
     }
 
+    // Opcion valida del menu (Falta por corregir)
     public static int opcion_menu(){
         int opcion = 0;
         try {
@@ -45,6 +48,7 @@ public class MaquinaSnacks {
         }
     }
 
+    // Menu de opciones
     public static int menu(){
        System.out.println("\n*** Maquina de Snacks ***\n");
        Snacks.mostrarSnacks();
@@ -58,18 +62,22 @@ public class MaquinaSnacks {
        return opcion;
     }
 
-
+    // Metodo para comprar Snacks
     public static void comprarSnacks() {
         var idSnack = inputIdSnack();
+        // Obtenemos todos los snaks que contiene la maquina
         List<Snack> listaSnacks = Snacks.getListaSnaks();
         boolean isComprado = false;
         for (Snack snack : listaSnacks) {
+            // Si el id ingresado corresponde a un snack ya registrado, lo agregamos a la lista de snacks comprados
             if (snack.getIdSnack() == idSnack) {
                 isComprado = true;
-                MaquinaSnacks.listaSnacksComprados.add(snack);
+                MaquinaSnacks.listaSnacksComprados.add(snack); // Agregamos
                 break;
             }
         }
+
+        // Mensajes si se completaron las opciones o no
 
         if (isComprado) {
             System.out.println("\nProducto agregado con exito!\n");
@@ -87,6 +95,7 @@ public class MaquinaSnacks {
 
     }
 
+    // Mostramos el ticket de compra de todos los snacks
     public static void mostrarTicket(){
         int total = 0;
         System.out.println("\nProducto  Precio\n");
@@ -101,7 +110,8 @@ public class MaquinaSnacks {
         entrada.nextLine();
         limpiarConsola();
     }
-    
+
+    // Metodo para agregar productos nuevos a la maquina de Snacks
     public static void agregarProducto(){
         System.out.print("Ingrese el nombre del producto: ");
         entrada.nextLine();
@@ -118,13 +128,13 @@ public class MaquinaSnacks {
         limpiarConsola();
     }
 
+    // Metodo de la logica del programa
     public static void ejecutarAcciones() {
         int opcion = 0;
         do {
             opcion = menu();
             switch (opcion) {
                 case 1:
-
                     Snacks.mostrarSnacks();
                     MaquinaSnacks.comprarSnacks();
                     break;
@@ -145,12 +155,14 @@ public class MaquinaSnacks {
         } while (opcion != 4);
     }
 
+    // Metodo para "limpiar" consola
     public static void limpiarConsola() {
         for (int i = 0; i < 50; i++) {
             System.out.println(); // Imprime líneas en blanco
         }
     }
 
+    // Metodo principal
     public static void main(String[] args) {
         try {
             ejecutarAcciones();

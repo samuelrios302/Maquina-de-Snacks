@@ -8,11 +8,14 @@ public class Snack {
     private String nombreSnack;
     private int precioSnack;
 
+    // Constructor
     public Snack(String nombre, int precio) {
         this.idSnack = (++Snack.contadorSnacks);
         this.nombreSnack = nombre;
         this.precioSnack = precio;
     }
+
+    // Metodos setters y getters de los atributos
 
     public int getIdSnack() {
         return this.idSnack;
@@ -34,6 +37,7 @@ public class Snack {
         return this.precioSnack;
     }
 
+    // Metodo para mostrar los atributos de cada objeto
     @Override
     public String toString() {
         return "Snack{" +
